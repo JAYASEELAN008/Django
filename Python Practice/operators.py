@@ -1,0 +1,1 @@
+print("The Examination Will Start From : 11/12/2014")
