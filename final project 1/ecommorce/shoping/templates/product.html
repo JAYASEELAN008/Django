@@ -1,0 +1,99 @@
+
+{% extends 'base.html' %}
+
+{% block title %}
+Product Page
+{% endblock %}
+
+{% block content %}
+
+
+
+    <title>{{ product.name }} - Meesho</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+   
+</head>
+<style>
+
+  /* Default color for filled and unfilled stars */
+  .fill {
+    color: rgb(252, 164, 0); /* Change to the desired filled star color */
+  }
+
+  .star {
+    color: gray; /* Change to the desired empty star color */
+  }
+
+  .star-rating {
+    font-size: 1.5rem; /* Adjust the size of the stars */
+  }
+
+
+
+
+
+</style>
+<body style="background-color:pink;">
+  
+   
+     
+      
+     
+      
+      <!-- product_detail.html -->
+      {% for item in cart_items %}
+      <p>{{ item.name }}: {{ item.total }}</p>
+  {% endfor %}
+<div class="container mt-4">
+  <h1>{{ product.name }}</h1>
+  <img src="{{ product.image.url }}" alt="{{ product.name }}" class="img-fluid w-50">
+  <p>{{ product.description }}</p>
+  <p><strong>Price:</strong> Rs {{ product.price }}</p>
+
+  <form action="{% url 'add_to_cart' product.id %}" method="get">
+      <button type="submit" class="btn btn-success">Add to Cart</button>
+      
+    
+
+
+
+
+<script>
+  document.querySelectorAll('.star').forEach(star => {
+    star.addEventListener('click', function() {
+      const rating = this.getAttribute('data-value');
+      document.getElementById('rating-value').innerText = rating;
+      // Send AJAX request to save the rating in the backend
+      fetch('/save-rating/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ product_id: {{ product.id }}, rating: rating }),
+      });
+    });
+  });
+</script>
+
+
+<!-- Rating stars -->
+<div class="d-flex align-items-center" id="rating-stars">
+  <strong>Ratings: </strong>
+  <span class="ms-2">
+    {% for i in range %}
+      {% if i < product.ratings %}
+      <i class="bi bi-star-fill" style="color: orange;"></i> <!-- Filled Star -->
+      {% else %}
+      <i class="bi bi-star" style="color: gray;"></i> <!-- Empty Star -->
+      {% endif %}
+    {% endfor %}
+  </span>
+  <span class="ms-2">({{ product.ratings }} / 5)</span>
+</div>
+</div>
+
+
+
+    {% endblock %}
+    
+</body>

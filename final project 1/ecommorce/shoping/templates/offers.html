@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Special Offers</h1>
+    <div class="list-group">
+        {% for offer in offers %}
+            <div class="list-group-item">
+                <h5 class="mb-1">{{ offer.name }}</h5>
+                <p class="mb-1">{{ offer.details }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
