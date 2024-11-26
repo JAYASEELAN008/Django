@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Favorites</title>
+</head>
+<body>
+    <h1>Your Favorite Items</h1>
+    <ul>
+        {% for item in favorite_items %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'welcome' %}">Back to Welcome</a>
+</body>
+</html>

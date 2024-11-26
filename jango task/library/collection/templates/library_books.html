@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Books</title>
+</head>
+<body>
+    <h1>Library Books</h1>
+    <table border="1">
+            {% for x in myhome %}
+                    <li>{{ x.Title }}
+                    {{x.Author_Name}}
+                    {{x.Publisher_Name}}
+                    {{publisher_year}}</li>
+            {% endfor %}
+       
+    </table>
+</body>
+</html>
+
+
+
+
